@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <style>
+  #txt{
+    margin-top:10px;
+    width: 300px;
+    height: 300px;
+    border:1px solid #ccc;
+  }
+  </style>
+</head>
+<body>
+<h2>chat</h2>
+<input type="text" id="message">
+<button id="submit">send</button>
+<br>
+<div id="txt">
+  
+</div>
+	<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script>
+    var socket = io.connect('http://localhost:8080');
+      socket.on('news', function (data) {
+        console.log(data);
+        $("#submit").on("click",function() {
+        	var message = $("#message").val();
+        	socket.emit('message', message);
+        });
+      });
+      socket.on("message",function(data) {
+        var $p =  $("<p>" + data + "</p>");
+         $("#txt").prepend($p);
+      });
+	</script>
+</body>
+</html>

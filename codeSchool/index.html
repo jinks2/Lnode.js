@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="text" id="message">
+<button id="submit">send</button>
+	<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script>
+    var socket = io.connect('http://localhost:8080');
+      socket.on('news', function (data) {
+        console.log(data);
+        $("#submit").on("click",function() {
+        	var message = $("#message").val();
+        	socket.emit('message', message);
+        });
+      });
+	</script>
+</body>
+</html>
