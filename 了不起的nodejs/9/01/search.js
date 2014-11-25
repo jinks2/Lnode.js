@@ -10,3 +10,4 @@ module.exports = function search(query, fn) {
 		fn(new Error('Bad twitter response'));
 	})
 }
+

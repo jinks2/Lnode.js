@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var ws = new WebSocket('ws://localhost:3000');
+	ws.onopen = function() {
+		document.onmouseover = function(ev) {
+			ws.send(JSON.stringify({x:ev.clinetX,y:ev.clientY}));
+		}
+	}
+	var initialized;
+	ws.onmessage = function(ev) {
+		var obj = JSON.parse(ev.data);
+		if(!initialized) {
+			initialized = true;
+			for(var id in obj) {
+				move(id,obj[id]);
+			}
+		} else {
+
+			if('disconnection' === obj.type) {
+				remove(obj.id);
+			} else {
+				move(obj.id, obj.pos);
+			}
+		}
+	}
+
+	function move(id, pos){
+		var cursor = document.getElementById('cursor-' + id);
+		if(!cursor) {
+			cursor = document.getElementById('img');
+			cursor.id = 'cursor-' + id;
+			cursor.src = '/cursor.png';
+			cursor.style.position = 'absolute';
+			document.body.appendChild(cursor);
+		}
+		cursor.style.left = pos.x + 'px';
+		cursor.style.right = pos.y + 'px';
+	}
+	function remove(id) {
+		var cursor = document.getElementById('cursor-' + id);
+		cursor.parrentNode.removeChild(cursor);
+	}
+</script>	
+</body>
+</html>
