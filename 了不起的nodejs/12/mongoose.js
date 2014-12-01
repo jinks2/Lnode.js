@@ -1,5 +1,5 @@
 var express =  require('express');
-var  mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 
 //建立模型
@@ -10,8 +10,6 @@ var User = mongoose.model('User', new Schema({
 	email: {type: String, unique: true},
 	password: {type: String, index: true}
 }));
-
-
 
 
 var app = express.createServer(
@@ -73,16 +71,15 @@ app.get('/signup', function(req, res) {
 });
 
 app.post('/signup', function(req, res, next) {
-    var user = new User(req.body.user).save(function(err) {
+    var user = new User(req.body.user);
+    user.save(function(err) {
     	if (err) return next(err);
-    	console.log(user);
-    	//res.redirect('/login/' + user.email);
+    	res.redirect('/login/' + user.email);
     });
 });
 
 //连接数据库
-mongoose.connect('mongodb://127.0.0.1/my_website');
+mongoose.connect('mongodb://127.0.0.1/my-website');
 app.listen(3000, function() {
 	console.log('\033[96m + \033[39m app listening on *: 3000');
 });
-
