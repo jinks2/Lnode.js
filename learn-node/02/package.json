@@ -1,0 +1,21 @@
+{
+  "name": "learn-node02",
+  "version": "0.0.2",
+  "description": " learn-node",
+  "main": "index.js",
+  "scripts": {
+    "test": "0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "0"
+  },
+  "keywords": [
+    "0"
+  ],
+  "author": "0",
+  "license": "0",
+  "dependencies": {
+    "async": "^0.9.0"
+  }
+}

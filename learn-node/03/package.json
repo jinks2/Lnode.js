@@ -1,0 +1,22 @@
+{
+  "name": "mocha-test",
+  "version": "0.0.3",
+  "description": "mocha test",
+  "main": "main.js",
+  "scripts": {
+    "test": "0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "0"
+  },
+  "keywords": [
+    "0"
+  ],
+  "author": "0",
+  "license": "0",
+  "dependencies": {
+    "mocha": "^2.0.1",
+    "should": "^4.3.0"
+  }
+}
